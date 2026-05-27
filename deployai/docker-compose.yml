@@ -1,0 +1,33 @@
+version: '3.9'
+
+services:
+  backend:
+    build:
+      context: ./backend
+    container_name: deployai-backend
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /tmp/deployai_workspace:/tmp/deployai_workspace
+    environment:
+      - PYTHONUNBUFFERED=1
+    networks:
+      - deployai-net
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: deployai-frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - deployai-net
+
+networks:
+  deployai-net:
+    driver: bridge
