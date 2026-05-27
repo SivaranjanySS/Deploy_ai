@@ -1,6 +1,6 @@
 # DeployAI Platform — Setup Guide
 
-## 🚀 Architecture Overview
+## Architecture Overview
 
 ```
 User Browser
@@ -22,7 +22,7 @@ Docker Runtime — User app containers
 
 ---
 
-## ✅ Prerequisites
+## Prerequisites
 
 ```bash
 # On your Ubuntu EC2 instance:
@@ -42,7 +42,7 @@ sudo apt install git -y
 
 ---
 
-## 🔧 Deployment Steps
+## Deployment Steps
 
 ### 1. Clone / Upload this project
 ```bash
@@ -79,7 +79,7 @@ http://YOUR_EC2_PUBLIC_IP
 
 ---
 
-## 🎯 How to Use
+## How to Use
 
 1. Open the platform in your browser
 2. Enter a **Project Name** (e.g., `my-flask-app`)
@@ -96,7 +96,7 @@ http://YOUR_EC2_PUBLIC_IP
 
 ---
 
-## 🧠 Supported Stacks (Auto-Detected)
+## Supported Stacks (Auto-Detected)
 
 | Indicator File | Detected Framework | Internal Port |
 |----------------|-------------------|---------------|
@@ -137,7 +137,7 @@ If no key is provided or AI fails, the platform automatically uses rule-based Do
 
 ---
 
-## 🔍 Monitoring
+## Monitoring
 
 ```bash
 # View platform logs
@@ -158,7 +158,7 @@ curl http://localhost:8000/api/deployments
 
 ---
 
-## 🧹 Maintenance
+## Maintenance
 
 ```bash
 # Stop the platform
@@ -176,7 +176,7 @@ docker compose down && docker system prune -f && docker compose up -d --build
 
 ---
 
-## 🌐 Custom Domain (Optional)
+## Custom Domain (Optional)
 
 For `myapp.deployai.com` style subdomains:
 
