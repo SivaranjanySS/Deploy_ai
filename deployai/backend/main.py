@@ -206,24 +206,22 @@ def generate_dockerfile_fallback(repo_path: Path, stack: dict) -> str:
     if fw in ("react", "nextjs", "vite"):
         return f"""FROM node:20-alpine AS builder
 WORKDIR /app
+
 COPY package*.json ./
-RUN npm ci --prefer-offline
+RUN npm install
+
 COPY . .
+
 RUN npm run build
 
-FROM node:20-alpine AS runner
-WORKDIR /app
-RUN addgroup -S appgroup && adduser -S appuser -G appgroup
-COPY --from=builder /app/package*.json ./
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/.next ./.next
-COPY --from=builder /app/public ./public
-USER appuser
-EXPOSE {port}
-HEALTHCHECK --interval=30s --timeout=5s CMD wget -qO- http://localhost:{port} || exit 1
-CMD ["npm", "start"]
-"""
+FROM nginx:alpine
 
+COPY --from=builder /app/dist /usr/share/nginx/html
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
+"""
     if fw in ("express", "fastify", "nodejs"):
         return f"""FROM node:20-alpine
 WORKDIR /app
