@@ -87,11 +87,11 @@ http://YOUR_EC2_PUBLIC_IP
 4. *(Optional)* Click **Settings** → add your Groq/OpenAI/Gemini API key for AI Dockerfile generation
 5. Click **Analyze & Deploy**
 6. Watch real-time logs:
-   - 🔍 Cloning
-   - 🔎 Stack detection
-   - 🤖 AI Dockerfile generation (or fallback)
-   - 🔨 Docker build
-   - 🚀 Container start
+   - Cloning
+   - Stack detection
+   - AI Dockerfile generation (or fallback)
+   - Docker build
+   - Container start
 7. Get your **Public URL**: `http://YOUR_EC2_IP:PORT`
 
 ---
@@ -117,7 +117,7 @@ http://YOUR_EC2_PUBLIC_IP
 
 ---
 
-## 🤖 AI Integration
+##  AI Integration
 
 ### Groq (Recommended — Free tier available)
 1. Get key at: https://console.groq.com
@@ -207,11 +207,3 @@ For `myapp.deployai.com` style subdomains:
 }
 ```
 
----
-
-## 🔒 Security Notes
-
-- The backend requires Docker socket access (`/var/run/docker.sock`) to manage containers
-- Do not expose port 8000 publicly in production — use only port 80 via Nginx
-- Consider adding authentication (API keys, OAuth) for production multi-tenant use
-- User containers run with non-root users (built into generated Dockerfiles)
